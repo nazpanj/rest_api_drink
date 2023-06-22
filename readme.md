@@ -15,9 +15,14 @@ git clone https://github.com/nazpanj/rest_api_drinks.git
 cd rest_api_drinks
 ```
 
-3. Create a conda environment:  
+3. Create a conda environment and install the requirements:  
 ```bash
-conda create --name your-env-name python=3.9
+conda create --name your_env_name --file requirements.txt
+```
+
+If there is `PackagesNotFoundError`, then run the following command first and then run the above command again:
+```bash
+conda config --append channels conda-forge
 ```
 
 4. Activate the conda environment (macOS):  
@@ -25,10 +30,6 @@ conda create --name your-env-name python=3.9
 conda activate your-env-name
 ```
 
-5. Install the required dependencies from the requirements.txt file:  
-```bash
-pip install -r requirements.txt
-```
 
 ## Usage
 
@@ -37,15 +38,15 @@ pip install -r requirements.txt
 python run.py
 ```
 
-2. The above command will start your Flask application and it will be accessible at:   http://localhost:5000
+2. The above command will start your Flask application and it will be accessible at:  `http://localhost:5000`
 
-3. Use the web interface to add, update, and delete drinks.
+3. Use the web interface to add, update, and delete drinks:
 
-4. Use the API endpoints to interact with the drink data programmatically:
-
-Add a drink: `POST /drinks`  
-Update a drink: `PUT /drinks/<id>`  
-Delete a drink: `DELETE /drinks/<id>`  
+- Add a drink: `http://localhost:5000/add_drink`  
+- Update a drink: `http://localhost:5000/update_drink`  
+- Delete a drink: `http://localhost:5000/delete_drink` 
+- Get a list of drinks: `http://localhost:5000/drinks`
+- Get a a drink based on id: `http://localhost:5000/drinks/<id>`
 
 ## Project Structure
 The project follows a standard Flask application structure:
@@ -63,6 +64,6 @@ The project follows a standard Flask application structure:
 ## Dependencies
 The project's dependencies are listed in the requirements.txt file. They include:
 
-Flask: A micro web framework for building web applications.  
-Flask-SQLAlchemy: Integrates SQLAlchemy, an Object-Relational Mapping (ORM) library, with Flask.
+- Flask: A micro web framework for building web applications.  
+- Flask-SQLAlchemy: Integrates SQLAlchemy, an Object-Relational Mapping (ORM) library, with Flask.
 
