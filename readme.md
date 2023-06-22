@@ -6,7 +6,7 @@ The Drink Management App is a web application built with Flask that allows you t
 
 1. Clone the repository:  
 ```bash 
-git clone https://github.com/your-username/drink-management-app.git
+git clone https://github.com/nazpanj/rest_api_drinks.git
 ```
 
 
