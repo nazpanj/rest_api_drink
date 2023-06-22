@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Drink</title>
+</head>
+<body>
+    <h1>Delete Drink</h1>
+    <form id="delete-form" class="form-container">
+        <label for="id">Drink ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+        <input type="submit" value="Delete Drink">
+    </form>
+    <div id="response"></div>
+    <script>
+        document.getElementById("delete-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get the ID of the drink to delete
+            var drinkId = document.getElementById("id").value;
+            
+            // Send the DELETE request
+            fetch("/delete_drink/" + drinkId, {
+                method: "DELETE"
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                // Handle the response data
+                console.log(data);
+
+                 // Check if error exists
+                if (data.hasOwnProperty('error')) {
+                    document.getElementById("response").innerText = "Error: " + data.error;
+                } else {
+                    // Display the name and description of the deleted drink
+                    document.getElementById("response").innerText = "Deleted drink: " + data.name + " - " + data.description;
+                }
+            })
+            .catch(error => {
+                // Handle errors
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>

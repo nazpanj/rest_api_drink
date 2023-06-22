@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Drink</title>
+</head>
+<body>
+    <h1>Add Drink</h1>
+    <form id="add-form" class="form-container">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+        <input type="submit" value="Add Drink">
+    </form>
+    <div id="response"></div>
+    <script>
+        document.getElementById("add-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get the form data
+            var formData = {
+                "name": document.getElementById("name").value,
+                "description": document.getElementById("description").value
+            };
+            
+            // Send the POST request with JSON data
+            fetch("/add_drink", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+                 // Hide the form
+                document.getElementById("add-form").style.display = "none";
+                // Display a success message
+                document.getElementById("response").innerText = "Added drink with ID: " + data.id;
+            })
+            .catch(error => {
+                // Handle errors
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>

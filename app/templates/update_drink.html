@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Drink</title>
+</head>
+<body>
+    <h1>Update Drink</h1>
+    <form id="update-form" class="form-container">
+        <label for="id">Drink ID:</label>
+        <input type="text" id="id" name="id" required><br><br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required><br><br>
+        <input type="submit" value="Update Drink">
+    </form>
+    <div id="response"></div>
+    <script>
+        document.getElementById("update-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Get the form data
+            var formData = {
+                "id": document.getElementById("id").value,
+                "name": document.getElementById("name").value,
+                "description": document.getElementById("description").value
+            };
+            
+            // Send the PUT request with JSON data
+            fetch("/update_drink", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response data
+                console.log(data);
+
+                // Check if error exists
+                if (data.hasOwnProperty('error')) {
+                    document.getElementById("response").innerText = "Error: " + data.error;
+                } else {
+                    // Display the response message
+                document.getElementById("response").innerText = "Updated drink with ID: " + data.id;
+                }
+                
+               
+            })
+            .catch(error => {
+                // Handle errors
+                console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>
