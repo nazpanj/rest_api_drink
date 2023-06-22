@@ -2,6 +2,8 @@
 
 The Drink Management App is a web application built with Flask that allows you to manage a list of drinks. It provides functionality to add, update, get, and delete drinks using a RESTful API.
 
+[RESTful API tutorial](https://www.google.com/search?q=tutorial+restful+api&oq=tutorial+restful+api&aqs=chrome..69i57j0i22i30l9.8227j0j7&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:aed5445a,vid:qbLc5a9jdXo)
+
 ## Installation
 
 1. Clone the repository:  
